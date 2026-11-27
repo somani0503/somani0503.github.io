@@ -1,0 +1,2448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Arnav Somani</title>
+
+  <meta
+    name="description"
+    content="Arnav Somani — Information Sciences + Data Science student at the University of Illinois Urbana-Champaign. Data, software, and AI."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    :root {
+      --text: #1d2433;
+      --muted: #5e6670;
+      --light: #7a828c;
+      --border: #e1e3e8;
+      --bg: #ffffff;
+
+      --blue: #13294B;
+      --blue-2: #1e3c6e;
+      --blue-soft: #eef2f8;
+
+      --orange: #FF5F05;
+      --orange-text: #C84113;
+      --orange-soft: #fff2ea;
+
+      --max: 1060px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, Arial, sans-serif;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: .2s ease;
+    }
+
+    a:hover {
+      color: var(--orange-text);
+    }
+
+    ::selection {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .site {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+    }
+
+
+    header {
+      border-top: 3px solid var(--orange);
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,.94);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 2px;
+      background: var(--blue);
+    }
+
+    .nav {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 21px;
+      font-weight: 600;
+      white-space: nowrap;
+      color: var(--blue);
+    }
+
+    .brand::before {
+      content: "ILLINOIS / ";
+      color: var(--orange-text);
+      font-family: Inter, Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      align-items: center;
+      color: #4a5260;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 100%;
+      bottom: -4px;
+      height: 2px;
+      background: var(--orange);
+      transition: right .25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.current::after {
+      right: 0;
+    }
+
+    .nav-links a.current {
+      color: var(--blue);
+      font-weight: 500;
+    }
+
+    .mobile-toggle {
+      display: none;
+      border: 0;
+      background: transparent;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--blue);
+    }
+
+    main {
+      padding-bottom: 70px;
+      overflow-x: clip; /* keeps the decorative hero glows from causing sideways scroll */
+    }
+
+
+    .hero {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 42px;
+      padding: 70px 0 45px;
+      align-items: start;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      right: -80px;
+      top: 10px;
+      border-radius: 50%;
+      background:
+        radial-gradient(
+          circle,
+          rgba(255,95,5,.10),
+          rgba(255,95,5,0) 68%
+        );
+      pointer-events: none;
+      animation: floatGlow 7s ease-in-out infinite;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      left: -90px;
+      bottom: -40px;
+      border-radius: 50%;
+      background:
+        radial-gradient(
+          circle,
+          rgba(19,41,75,.07),
+          rgba(19,41,75,0) 68%
+        );
+      pointer-events: none;
+      animation: floatGlow 9s ease-in-out infinite reverse;
+    }
+
+    .portrait {
+      width: 190px;
+      height: 190px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      box-shadow: 6px 6px 0 rgba(255,95,5,.22);
+      transition: box-shadow .35s ease, transform .35s ease;
+    }
+
+    .portrait:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 9px 9px 0 rgba(255,95,5,.30);
+    }
+
+    .monogram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(
+          150deg,
+          var(--blue-2) 0%,
+          var(--blue) 70%
+        );
+      border-color: var(--blue);
+      color: #fff;
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 76px;
+      font-weight: 600;
+      letter-spacing: -.04em;
+      user-select: none;
+    }
+
+    .monogram::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 10px;
+      background: var(--orange);
+    }
+
+    .hero-main {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 145px;
+      gap: 35px;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      color: var(--orange-text);
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: .045em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 24px;
+      height: 2px;
+      background: var(--orange);
+      vertical-align: middle;
+      margin-right: 8px;
+      transform: translateY(-1px);
+    }
+
+    h1 {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: clamp(42px, 6vw, 64px);
+      line-height: 1.05;
+      letter-spacing: -.035em;
+      font-weight: 600;
+      margin: 0 0 14px;
+      color: var(--blue);
+    }
+
+    .hero-title {
+      font-size: 18px;
+      color: #3a4352;
+      margin: 0 0 18px;
+      font-weight: 600;
+      letter-spacing: .01em;
+    }
+
+    .hero-copy {
+      max-width: 720px;
+      color: #4f5866;
+      margin: 0 0 20px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 14px;
+    }
+
+    .links a {
+      color: var(--orange-text);
+      font-weight: 500;
+      position: relative;
+    }
+
+    .links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 100%;
+      bottom: -3px;
+      height: 1px;
+      background: var(--orange);
+      transition: right .25s ease;
+    }
+
+    .links a:hover::after {
+      right: 0;
+    }
+
+
+    .resume-preview {
+      display: block;
+      width: 145px;
+      text-align: center;
+      border: 0;
+      transition: transform .3s ease;
+    }
+
+    .resume-preview img {
+      display: block;
+      width: 145px;
+      height: auto;
+      border: 1px solid #d8dbe0;
+      box-shadow: 5px 6px 18px rgba(19,41,75,.12);
+      transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+    }
+
+    .resume-preview:hover {
+      transform: translateY(-4px);
+    }
+
+    .resume-preview:hover img {
+      box-shadow: 7px 10px 24px rgba(19,41,75,.18);
+    }
+
+    .resume-label {
+      display: block;
+      margin-top: 9px;
+      color: var(--orange-text);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+
+    .logo-strip {
+      padding: 18px 0 28px;
+      border-top: 0;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .logo-strip-inner {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 20px;
+      align-items: center;
+    }
+
+    .logo-item {
+      height: 105px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      background: #fff;
+      overflow: visible;
+      text-align: center;
+    }
+
+    .logo-item img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 82px;
+      object-fit: contain;
+      opacity: .92;
+      transition: transform .3s ease, opacity .3s ease;
+    }
+
+    .wordmark {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--blue);
+      letter-spacing: -.01em;
+      opacity: .82;
+      transition: transform .3s ease, opacity .3s ease, color .3s ease;
+    }
+
+    .wordmark.caps {
+      font-family: Inter, Arial, sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: .14em;
+    }
+
+    .wordmark .dot {
+      color: var(--orange);
+    }
+
+    .wordmark-sub {
+      margin-top: 6px;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--light);
+      transition: color .3s ease;
+    }
+
+    .logo-item:hover .wordmark,
+    .logo-item:hover img {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+
+    .logo-item:hover .wordmark-sub {
+      color: var(--orange-text);
+    }
+
+
+    section {
+      padding: 45px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-title {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 30px;
+      font-weight: 600;
+      margin: 0 0 28px;
+      letter-spacing: -.02em;
+      position: relative;
+      padding-left: 15px;
+      color: var(--blue);
+    }
+
+    .section-title::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 4px;
+      height: 25px;
+      background: var(--orange);
+    }
+
+    .intro {
+      max-width: 850px;
+      color: #4f5866;
+    }
+
+
+    .education-highlight {
+      position: relative;
+      padding: 30px 32px 30px 30px;
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--orange);
+      background:
+        linear-gradient(
+          135deg,
+          #fff 0%,
+          #fff 68%,
+          var(--blue-soft) 100%
+        );
+      box-shadow: 0 12px 35px rgba(19,41,75,.05);
+      overflow: hidden;
+      transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+    }
+
+    .education-highlight:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 42px rgba(19,41,75,.10);
+    }
+
+    .education-highlight::after {
+      content: "ILLINOIS";
+      position: absolute;
+      right: -10px;
+      bottom: -32px;
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 120px;
+      line-height: 1;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      color: rgba(19,41,75,.05);
+      pointer-events: none;
+    }
+
+    .uiuc-row {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .uiuc-logo {
+      width: 88px;
+      height: 88px;
+      flex: 0 0 88px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue);
+      border-radius: 6px;
+      color: var(--orange);
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 58px;
+      font-weight: 600;
+      line-height: 1;
+      box-shadow: inset 0 0 0 4px var(--blue), inset 0 0 0 6px rgba(255,95,5,.6);
+      object-fit: contain;
+    }
+
+    .uiuc-kicker {
+      color: var(--orange-text);
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: .12em;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .uiuc-name {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 25px;
+      line-height: 1.25;
+      font-weight: 600;
+      margin: 0;
+      color: var(--blue);
+    }
+
+    .uiuc-degree {
+      margin: 5px 0 0;
+      color: #4f5866;
+      font-size: 14px;
+    }
+
+    .uiuc-meta {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid #e6e8ec;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .uiuc-meta strong {
+      color: var(--blue);
+      font-size: 13px;
+    }
+
+    .uiuc-meta span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .uiuc-coursework {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+    }
+
+    .uiuc-coursework strong {
+      color: var(--blue);
+    }
+
+
+    .timeline {
+      position: relative;
+      padding: 8px 0;
+    }
+
+    .timeline-track {
+      position: absolute;
+      left: 222px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #e6e8ec;
+      overflow: hidden;
+    }
+
+    .timeline-progress {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 0%;
+      background:
+        linear-gradient(
+          to bottom,
+          var(--orange),
+          var(--blue)
+        );
+      transition: height .12s linear;
+    }
+
+    .entry {
+      display: grid;
+      grid-template-columns: 205px 35px 1fr;
+      gap: 0;
+      padding: 0 0 48px;
+      position: relative;
+    }
+
+    .entry:last-child {
+      padding-bottom: 5px;
+    }
+
+    .date {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      padding-top: 4px;
+      padding-right: 18px;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 14px;
+    }
+
+    .company-logo {
+      display: block;
+      width: auto;
+      max-width: 180px;
+      height: auto;
+      max-height: 75px;
+      object-fit: contain;
+      opacity: .88;
+      transition: opacity .3s ease, transform .3s ease;
+    }
+
+    .company-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 58px;
+      height: 58px;
+      padding: 0 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--blue);
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      opacity: .8;
+      transition: opacity .3s ease, transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    }
+
+    .entry:hover .company-logo,
+    .entry:hover .company-mark,
+    .entry.active .company-mark {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
+    .entry.active .company-mark,
+    .entry:hover .company-mark {
+      border-color: rgba(255,95,5,.45);
+      box-shadow: 0 6px 16px rgba(19,41,75,.08);
+    }
+
+    .timeline-node {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      justify-content: center;
+      padding-top: 3px;
+    }
+
+    .timeline-dot {
+      width: 13px;
+      height: 13px;
+      border: 3px solid #fff;
+      background: #d3d7de;
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px #d3d7de;
+      transition: .3s ease;
+    }
+
+    .entry.active .timeline-dot,
+    .entry:hover .timeline-dot {
+      background: var(--orange);
+      box-shadow:
+        0 0 0 4px rgba(255,95,5,.16),
+        0 0 0 1px var(--orange);
+      transform: scale(1.1);
+    }
+
+    .entry-content {
+      padding-left: 28px;
+      transition: transform .35s ease;
+    }
+
+    .entry h3 {
+      margin: 0 0 3px;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    .org {
+      color: var(--orange-text);
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .location {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 400;
+    }
+
+    .entry ul {
+      margin: 10px 0 0;
+      padding-left: 19px;
+      color: #4f5866;
+    }
+
+    .entry li {
+      margin: 5px 0;
+    }
+
+    .entry li::marker {
+      color: var(--orange);
+    }
+
+    .entry li strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+
+    .work-item {
+      padding: 27px 0;
+      border-bottom: 1px solid var(--border);
+      transition:
+        transform .3s ease,
+        padding-left .3s ease,
+        box-shadow .3s ease;
+    }
+
+    .work-item:first-of-type {
+      padding-top: 0;
+    }
+
+    .work-item:last-of-type {
+      border-bottom: 0;
+    }
+
+    .work-item:hover {
+      transform: translateX(6px);
+      padding-left: 8px;
+      box-shadow: inset 3px 0 0 var(--orange);
+    }
+
+    .work-item:first-of-type:hover {
+      padding-top: 0;
+    }
+
+    .work-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: baseline;
+    }
+
+    .work-title h3 {
+      margin: 0;
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 21px;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    .work-number {
+      color: #a7adb6;
+      font-size: 13px;
+      transition:
+        color .25s ease,
+        transform .25s ease;
+    }
+
+    .work-item:hover .work-number {
+      color: var(--orange-text);
+      transform: translateX(-4px);
+    }
+
+    .work-meta {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .work-item p {
+      margin: 7px 0 0;
+      color: #4f5866;
+      max-width: 850px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--blue);
+      background: var(--blue-soft);
+      border-radius: 999px;
+      padding: 3px 11px;
+      transition: background .25s ease, color .25s ease;
+    }
+
+    .work-item:hover .tag {
+      background: var(--orange-soft);
+      color: var(--orange-text);
+    }
+
+    .work-links {
+      display: flex;
+      gap: 18px;
+      margin-top: 16px;
+      font-size: 14px;
+    }
+
+    .work-links a {
+      color: var(--orange-text);
+      font-weight: 600;
+      position: relative;
+    }
+
+    .work-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 100%;
+      bottom: -3px;
+      height: 1px;
+      background: var(--orange);
+      transition: right .25s ease;
+    }
+
+    .work-links a:hover::after {
+      right: 0;
+    }
+
+    .work-video {
+      margin-top: 16px;
+      max-width: 720px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--blue);
+      box-shadow: 0 10px 28px rgba(19,41,75,.14);
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+
+    .work-video video {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+    }
+
+    .work-video:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 36px rgba(19,41,75,.2);
+    }
+
+
+
+
+    .work-shots.phones {
+      display: flex;
+      gap: 14px;
+      margin-top: 16px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scrollbar-width: thin;
+    }
+
+    .work-shots.phones img {
+      flex: 0 0 auto;
+      width: 150px;
+      height: auto;
+      border-radius: 18px;
+      border: 4px solid var(--blue);
+      box-shadow: 0 8px 20px rgba(19,41,75,.15);
+      transition: transform .3s ease;
+    }
+
+    .work-shots.phones img:hover {
+      transform: translateY(-4px) scale(1.03);
+    }
+
+
+    .skills {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px 50px;
+    }
+
+    .skill-group {
+      padding-left: 14px;
+      border-left: 2px solid var(--border);
+      transition: border-color .3s ease;
+    }
+
+    .skill-group:hover {
+      border-left-color: var(--orange);
+    }
+
+    .skill-group h3 {
+      font-size: 15px;
+      margin: 0 0 8px;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    .skill-group p {
+      color: #4f5866;
+      margin: 0;
+    }
+
+    .beyond-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .beyond-card {
+      position: relative;
+      overflow: hidden;
+      padding: 28px 26px 24px;
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--orange);
+      border-radius: 6px;
+      background: linear-gradient(160deg, #fff 0%, #fff 70%, var(--blue-soft) 100%);
+      box-shadow: 0 12px 35px rgba(19,41,75,.05);
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+
+    .beyond-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 42px rgba(19,41,75,.10);
+    }
+
+    .beyond-card::after {
+      content: attr(data-mark);
+      position: absolute;
+      right: -6px;
+      bottom: -26px;
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 96px;
+      font-weight: 600;
+      line-height: 1;
+      color: rgba(19,41,75,.05);
+      pointer-events: none;
+    }
+
+    .beyond-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .beyond-kicker {
+      color: var(--orange-text);
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: .12em;
+      font-weight: 700;
+    }
+
+    .beyond-title {
+      margin: 2px 0 8px;
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 25px;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    .beyond-copy {
+      margin: 0;
+      color: #4f5866;
+      font-size: 14px;
+    }
+
+    .photo-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .photo-row img,
+    .photo-slot {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: 8px;
+      object-fit: cover;
+      transition: transform .3s ease;
+    }
+
+    .photo-row img:hover {
+      transform: scale(1.03);
+    }
+
+    .photo-slot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px dashed var(--border);
+      background: var(--blue-soft);
+      color: var(--light);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .stat-strip div {
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: var(--blue-soft);
+    }
+
+    .stat-strip strong {
+      display: block;
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 20px;
+      color: var(--blue);
+    }
+
+    .stat-strip span {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .beyond-list {
+      list-style: none;
+      margin: 18px 0 0;
+      padding: 0;
+      font-size: 14px;
+    }
+
+    .beyond-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .beyond-year {
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .beyond-links {
+      margin-top: 14px;
+    }
+
+    .todo {
+      color: #9aa1ab !important;
+      font-style: italic;
+    }
+
+    .beyond-card.wide {
+      grid-column: 1 / -1;
+    }
+
+    .pitch-photos {
+      display: grid;
+      grid-template-columns: 0.42fr 1fr;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .acting-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 26px;
+      margin-top: 4px;
+    }
+
+    .award {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin: 16px 0 18px;
+      padding: 12px 14px;
+      border-left: 3px solid var(--orange);
+      background: var(--orange-soft);
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .award strong {
+      display: block;
+      color: var(--blue);
+    }
+
+    .award span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .feature-photo {
+      margin: 0;
+    }
+
+    .feature-photo img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .feature-photo figcaption,
+    .clip-meta {
+      margin-top: 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .feature-photo figcaption strong,
+    .clip-meta strong {
+      display: block;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .clip-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px 16px;
+    }
+
+    .clip {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .clip-thumb {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #000;
+    }
+
+    .clip-thumb img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      transition: transform .3s ease;
+    }
+
+    .clip-thumb::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 0;
+      height: 0;
+      margin: -11px 0 0 -7px;
+      border-style: solid;
+      border-width: 11px 0 11px 18px;
+      border-color: transparent transparent transparent #fff;
+      filter: drop-shadow(0 1px 4px rgba(0,0,0,.5));
+    }
+
+    .clip:hover .clip-thumb img {
+      transform: scale(1.04);
+    }
+
+    .clip:hover .clip-meta strong {
+      color: var(--orange-text);
+    }
+
+
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: end;
+    }
+
+    .contact-copy {
+      max-width: 650px;
+      color: #4f5866;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 7px;
+      color: var(--orange-text);
+      font-size: 14px;
+    }
+
+    .contact-links a:hover {
+      color: var(--blue);
+    }
+
+    .contact-links span {
+      color: var(--muted);
+    }
+
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 25px 0 35px;
+      color: #8d949e;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-tag {
+      color: var(--orange-text);
+      font-weight: 600;
+    }
+
+    .footer-tag b {
+      color: var(--blue);
+      font-weight: 600;
+    }
+
+
+    .fade {
+      opacity: 0;
+      transform: translateY(18px);
+      transition:
+        opacity .75s cubic-bezier(.22,1,.36,1),
+        transform .75s cubic-bezier(.22,1,.36,1);
+    }
+
+    .fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .entry .entry-content {
+      opacity: 0;
+      transform: translateY(18px);
+      transition:
+        opacity .7s ease,
+        transform .7s cubic-bezier(.22,1,.36,1);
+    }
+
+    .entry.visible .entry-content {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .entry.visible:hover .entry-content {
+      transform: translateX(5px);
+    }
+
+    .entry:nth-child(2) .entry-content { transition-delay: .06s; }
+    .entry:nth-child(3) .entry-content { transition-delay: .10s; }
+    .entry:nth-child(4) .entry-content { transition-delay: .14s; }
+    .entry:nth-child(5) .entry-content { transition-delay: .18s; }
+
+    .entry .date {
+      opacity: .55;
+      transition:
+        opacity .3s ease,
+        color .3s ease;
+    }
+
+    .entry.active .date {
+      opacity: 1;
+      color: var(--orange-text);
+    }
+
+    @keyframes floatGlow {
+      0%, 100% {
+        transform: translate(0,0) scale(1);
+      }
+
+      50% {
+        transform: translate(-12px, 10px) scale(1.08);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .hero::after, .hero::before { animation: none; }
+      .fade, .entry .entry-content { opacity: 1; transform: none; transition: none; }
+    }
+
+
+    .back-top {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: rgba(255,255,255,.92);
+      color: var(--orange-text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: .3s ease;
+      box-shadow: 0 5px 20px rgba(19,41,75,.10);
+    }
+
+    .back-top.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .back-top:hover {
+      background: var(--blue);
+      color: var(--orange);
+      border-color: var(--blue);
+    }
+
+
+    @media (max-width: 760px) {
+
+      .site {
+        width: min(calc(100% - 32px), var(--max));
+      }
+
+      .nav {
+        min-height: 62px;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 62px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+        padding: 18px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 13px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 48px 0 35px;
+      }
+
+      .hero::after {
+        right: -40px;
+      }
+
+      .portrait {
+        width: 145px;
+        height: 145px;
+      }
+
+      .monogram {
+        font-size: 58px;
+      }
+
+      .hero-main {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .resume-preview,
+      .resume-preview img {
+        width: 125px;
+      }
+
+      .logo-strip-inner {
+        display: flex;
+        gap: 18px;
+        overflow-x: auto;
+        padding: 5px 5px 10px;
+        scrollbar-width: none;
+      }
+
+      .logo-strip-inner::-webkit-scrollbar {
+        display: none;
+      }
+
+      .logo-item {
+        flex: 0 0 160px;
+        height: 84px;
+        padding: 8px 12px;
+      }
+
+      .wordmark {
+        font-size: 19px;
+      }
+
+      .wordmark.caps {
+        font-size: 16px;
+      }
+
+      .timeline-track {
+        left: 6px;
+      }
+
+      .entry {
+        grid-template-columns: 28px 1fr;
+        gap: 0;
+        padding-bottom: 40px;
+      }
+
+      .date {
+        grid-column: 2;
+        grid-row: 1;
+        text-align: left;
+        align-items: flex-start;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        padding: 0 0 6px;
+      }
+
+      .company-mark {
+        min-width: 44px;
+        height: 44px;
+        font-size: 17px;
+      }
+
+      .company-logo {
+        max-width: 150px;
+        max-height: 58px;
+      }
+
+      .timeline-node {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        justify-content: flex-start;
+        padding-top: 4px;
+      }
+
+      .entry-content {
+        grid-column: 2;
+        padding-left: 0;
+      }
+
+      .skills {
+        grid-template-columns: 1fr;
+      }
+
+      .uiuc-row {
+        align-items: flex-start;
+      }
+
+      .uiuc-logo {
+        width: 68px;
+        height: 68px;
+        flex-basis: 68px;
+        font-size: 44px;
+      }
+
+      .uiuc-name {
+        font-size: 21px;
+      }
+
+      .uiuc-meta {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+
+      .uiuc-meta strong {
+        margin-top: 8px;
+      }
+
+      .education-highlight {
+        padding: 23px 20px;
+      }
+
+      .education-highlight::after {
+        font-size: 80px;
+        bottom: -20px;
+      }
+
+      .beyond-grid,
+      .acting-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .contact {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-links {
+        align-items: flex-start;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="site nav">
+
+    <a class="brand" href="#top">
+      Arnav Somani
+    </a>
+
+    <button
+      class="mobile-toggle"
+      id="menuToggle"
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
+      ☰
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
+      <a href="#work">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#beyond">Beyond Code</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+  </div>
+</header>
+
+
+<main id="top" class="site">
+
+
+  <section class="hero fade" style="border-top:0;">
+
+    <img class="portrait" src="assets/arnav.jpg" alt="Arnav Somani">
+
+    <div class="hero-main">
+
+      <div>
+
+        <div class="eyebrow">
+          UNIVERSITY OF ILLINOIS URBANA-CHAMPAIGN · DATA · SOFTWARE · AI
+        </div>
+
+        <h1>
+          Arnav Somani
+        </h1>
+
+        <p class="hero-title">
+          Information Sciences + Data Science @ Illinois
+        </p>
+
+        <p class="hero-copy">
+          I'm an undergraduate at the University of Illinois Urbana-Champaign
+          studying Information Sciences + Data Science, with minors in Computer
+          Science and Statistics. I build quantitative trading tools, MCP server
+          layers that connect LLMs to real products, and auto-scaling cloud
+          systems that stay up under load.
+        </p>
+
+        <div class="links">
+
+          <a href="mailto:somani5@illinois.edu">
+            Email
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/arnav-somani-aa0660321/"
+            target="_blank"
+            rel="noopener"
+          >
+            LinkedIn
+          </a>
+
+          <a href="https://github.com/somani0503" target="_blank" rel="noopener">
+            GitHub
+          </a>
+
+          <a href="tel:+12176931138">
+            (217) 693-1138
+          </a>
+
+          <a href="#work">
+            Projects ↓
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <a
+        class="resume-preview"
+        href="resume.pdf"
+        target="_blank"
+        rel="noopener"
+        aria-label="Open Arnav Somani resume"
+      >
+
+        <img
+          src="resume-thumbnail.png"
+          alt="Preview of Arnav Somani resume"
+        >
+
+        <span class="resume-label">
+          View Resume ↗
+        </span>
+
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <section class="logo-strip" aria-label="Organizations">
+
+    <div class="logo-strip-inner">
+
+      <div class="logo-item">
+        <span class="wordmark caps">ILLINOIS</span>
+        <span class="wordmark-sub">Urbana-Champaign</span>
+      </div>
+
+      <div class="logo-item">
+        <span class="wordmark">TradeGrub<span class="dot">.</span></span>
+        <span class="wordmark-sub">DS &amp; SWE Intern</span>
+      </div>
+
+      <div class="logo-item">
+        <span class="wordmark">Outlier<span class="dot">.</span></span>
+        <span class="wordmark-sub">LLM Evaluator</span>
+      </div>
+
+      <div class="logo-item">
+        <span class="wordmark caps">SOS</span>
+        <span class="wordmark-sub">Children's Village</span>
+      </div>
+
+      <div class="logo-item">
+        <span class="wordmark">Martex<span class="dot">.</span></span>
+        <span class="wordmark-sub">Co-founder</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section id="about" class="fade">
+
+    <h2 class="section-title">
+      About
+    </h2>
+
+    <p class="intro">
+      I work where data science, software engineering, and AI meet. At TradeGrub
+      I engineered technical indicators and backtested trading strategies,
+      built the MCP server layer connecting LLMs to an automated scheduling
+      system, and architected auto-scaling infrastructure on DigitalOcean.
+      Before that, I evaluated and refined LLM outputs at Outlier, and
+      co-founded Martex, a digital marketing agency. I like taking a messy
+      problem, finding the signal in the data, and shipping something that
+      holds up in production.
+    </p>
+
+  </section>
+
+
+  <section id="education" class="fade">
+
+    <h2 class="section-title">
+      Education
+    </h2>
+
+    <div class="education-highlight">
+
+      <div class="uiuc-row">
+
+        <div class="uiuc-logo" aria-hidden="true">I</div>
+
+        <div>
+
+          <div class="uiuc-kicker">
+            University of Illinois Urbana-Champaign
+          </div>
+
+          <h3 class="uiuc-name">
+            Bachelor's in Information Sciences + Data Science
+          </h3>
+
+          <p class="uiuc-degree">
+            Minors in Computer Science &amp; Statistics
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="uiuc-meta">
+
+        <strong>Location</strong>
+        <span>Urbana-Champaign, IL</span>
+
+        <strong>Expected</strong>
+        <span>May 2029</span>
+
+        <!-- Add GPA here if you want it shown:
+        <strong>GPA</strong>
+        <span>3.9 / 4.0</span>
+        -->
+
+      </div>
+
+      <!-- Add relevant coursework when ready:
+      <p class="uiuc-coursework">
+        <strong>Coursework:</strong>
+        Data Structures, Statistics, Database Systems, ...
+      </p>
+      -->
+
+    </div>
+
+  </section>
+
+
+  <section id="experience" class="fade">
+
+    <h2 class="section-title">
+      Experience
+    </h2>
+
+    <div class="timeline">
+
+      <div class="timeline-track" aria-hidden="true">
+        <div class="timeline-progress"></div>
+      </div>
+
+
+      <article class="entry">
+
+        <div class="date">
+          <span>May 2026 – Aug 2026</span>
+          <span class="company-mark" aria-hidden="true">TG</span>
+        </div>
+
+        <div class="timeline-node">
+          <span class="timeline-dot"></span>
+        </div>
+
+        <div class="entry-content">
+
+          <h3>
+            Data Scientist &amp; Software Engineer Intern
+          </h3>
+
+          <div class="org">
+            TradeGrub — Multi-Broker Trading Platform
+            <span class="location">
+              · Remote (Lewes, DE)
+            </span>
+          </div>
+
+          <ul>
+
+            <li>
+              Engineered custom technical indicators and trading strategies for
+              TradeGrub's stock-market charting platform, with backtested
+              strategies achieving a <strong>mean return of 18.2%</strong>.
+            </li>
+
+            <li>
+              Independently built the <strong>MCP (Model Context Protocol)
+              server</strong> layer connecting LLMs via API-key integrations to
+              power an automated scheduling system.
+            </li>
+
+            <li>
+              Developed banking and scheduling software on self-architected
+              auto-scaling DigitalOcean droplets, sustaining
+              <strong>99.5% uptime</strong> under load through automatic
+              overload handling and off-peak scale-down.
+            </li>
+
+          </ul>
+
+        </div>
+
+      </article>
+
+
+      <article class="entry">
+
+        <div class="date">
+          <span>Mar 2025 – Aug 2025</span>
+          <span class="company-mark" aria-hidden="true">O</span>
+        </div>
+
+        <div class="timeline-node">
+          <span class="timeline-dot"></span>
+        </div>
+
+        <div class="entry-content">
+
+          <h3>
+            LLM Evaluator
+          </h3>
+
+          <div class="org">
+            Outlier — AI/LLM Contribution Platform
+            <span class="location">
+              · Bangalore, India
+            </span>
+          </div>
+
+          <ul>
+
+            <li>
+              Evaluated and refined AI-generated outputs across multiple
+              domains, improving accuracy, coherence, and alignment with human
+              instructions by <strong>20%</strong>.
+            </li>
+
+            <li>
+              Provided detailed feedback on LLM performance, contributing to
+              advances in model training and reliability.
+            </li>
+
+            <li>
+              Conducted comparative evaluations of model outputs to optimize
+              response quality and reduce bias in AI systems.
+            </li>
+
+          </ul>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <section id="work" class="fade">
+
+    <h2 class="section-title">
+      Projects
+    </h2>
+
+
+    <article class="work-item">
+
+      <div class="work-title">
+        <h3>Cryptocurrency Market Simulation</h3>
+        <span class="work-number">01</span>
+      </div>
+
+      <div class="work-meta">June 2024 – October 2024 · High school project</div>
+
+      <p>
+        A trading simulator where users buy and sell real cryptocurrencies at
+        live Binance prices with $10,000 of simulated cash, with persistent user
+        and portfolio storage. A prediction page uses regression, Monte Carlo
+        simulation and machine-learning models to forecast price trends. The
+        project was praised by the Lead HOD of CBSE, India for its lifelike
+        simulation of platforms like CoinSwitch and Binance.
+      </p>
+
+      <div class="work-video">
+        <video controls playsinline preload="none" poster="assets/video/crypto-market-simulator-poster.jpg">
+          <source src="assets/video/crypto-market-simulator-demo.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">Flask</span>
+        <span class="tag">MySQL / SQLite</span>
+        <span class="tag">WebSockets</span>
+        <span class="tag">scikit-learn</span>
+        <span class="tag">Linear Regression</span>
+      </div>
+
+      <div class="work-links">
+        <a href="https://github.com/somani0503/crypto-market-simulator" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://codespaces.new/somani0503/crypto-market-simulator" target="_blank" rel="noopener">Run it in your browser</a>
+        <a href="assets/video/crypto-market-simulator-demo.mp4" target="_blank" rel="noopener">Watch the demo</a>
+      </div>
+
+    </article>
+
+
+    <article class="work-item">
+
+      <div class="work-title">
+        <h3>Campus Connect</h3>
+        <span class="work-number">02</span>
+      </div>
+
+      <div class="work-meta">January 2026</div>
+
+      <p>
+        A full-stack Android peer-mentorship app for UIUC students with
+        real-time post and comment feeds across 8 connected screens. Built on a
+        multi-collection Firestore database with automatic group assignment by
+        major and housing, nested comment subcollections, and category-filtered
+        public forums.
+      </p>
+
+      <div class="work-video">
+        <video controls playsinline preload="none" poster="assets/video/campus-connect-poster.jpg">
+          <source src="assets/video/campus-connect-demo.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="work-shots phones">
+        <img src="assets/campus-connect/01-login.png" alt="CampusConnect login screen" loading="lazy">
+        <img src="assets/campus-connect/02-home.png" alt="CampusConnect home feed" loading="lazy">
+        <img src="assets/campus-connect/03-groups.png" alt="CampusConnect auto-assigned groups" loading="lazy">
+        <img src="assets/campus-connect/04-ratings.png" alt="CampusConnect professor ratings" loading="lazy">
+        <img src="assets/campus-connect/05-post.png" alt="CampusConnect post detail" loading="lazy">
+        <img src="assets/campus-connect/07-profile.png" alt="CampusConnect profile" loading="lazy">
+      </div>
+
+      <div class="tags">
+        <span class="tag">Java</span>
+        <span class="tag">Android</span>
+        <span class="tag">Firebase Auth</span>
+        <span class="tag">Firestore</span>
+        <span class="tag">Cloud Messaging</span>
+      </div>
+
+      <div class="work-links">
+        <a href="https://github.com/somani0503/campus-connect" target="_blank" rel="noopener">GitHub</a>
+        <a href="assets/downloads/CampusConnect.apk" download>Download APK</a>
+        <a href="assets/video/campus-connect-demo.mp4" target="_blank" rel="noopener">Watch the demo</a>
+      </div>
+
+    </article>
+
+  </section>
+
+
+  <section id="skills" class="fade">
+
+    <h2 class="section-title">
+      Skills
+    </h2>
+
+    <div class="skills">
+
+      <div class="skill-group">
+        <h3>Programming Languages</h3>
+        <p>C++ · Python · JavaScript · GraphQL · Java</p>
+      </div>
+
+      <div class="skill-group">
+        <h3>Databases &amp; Data</h3>
+        <p>MySQL · PostgreSQL · Firestore · IBM Watson Studio</p>
+      </div>
+
+      <div class="skill-group">
+        <h3>Cloud &amp; DevOps</h3>
+        <p>Docker · DigitalOcean (Droplets, autoscaling) · Cloudflare · n8n (workflow automation)</p>
+      </div>
+
+      <div class="skill-group">
+        <h3>AI / LLM</h3>
+        <p>Model Context Protocol (MCP) servers · LLM API integration · LLM evaluation</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section id="leadership" class="fade">
+
+    <h2 class="section-title">
+      Leadership &amp; Service
+    </h2>
+
+    <div class="timeline">
+
+      <div class="timeline-track" aria-hidden="true">
+        <div class="timeline-progress"></div>
+      </div>
+
+
+      <article class="entry">
+
+        <div class="date">
+          <span>Mar 2023 – Jan 2025</span>
+          <span class="company-mark" aria-hidden="true">MX</span>
+        </div>
+
+        <div class="timeline-node">
+          <span class="timeline-dot"></span>
+        </div>
+
+        <div class="entry-content">
+
+          <h3>
+            Co-founder · Head of Communications &amp; Marketing
+          </h3>
+
+          <div class="org">
+            Martex — Social Media Marketing Agency
+            <span class="location">
+              · Bangalore, India
+            </span>
+          </div>
+
+          <ul>
+
+            <li>
+              Co-founded a contract-based digital agency (social media growth,
+              digital advertising, e-commerce solutions), leading client
+              communications as primary liaison.
+            </li>
+
+            <li>
+              Managed branding, ad campaigns, and website development, delivering
+              an average <strong>30% increase in client engagement</strong>
+              through targeted digital campaigns.
+            </li>
+
+          </ul>
+
+        </div>
+
+      </article>
+
+
+      <article class="entry">
+
+        <div class="date">
+          <span>Sep 2022 – Feb 2025</span>
+          <span class="company-mark" aria-hidden="true">SOS</span>
+        </div>
+
+        <div class="timeline-node">
+          <span class="timeline-dot"></span>
+        </div>
+
+        <div class="entry-content">
+
+          <h3>
+            Core Volunteer
+          </h3>
+
+          <div class="org">
+            SOS Children's Village &amp; AXF Digital
+            <span class="location">
+              · Bangalore, India
+            </span>
+          </div>
+
+          <ul>
+
+            <li>
+              Served as a math and IT tutor to <strong>35+ children</strong> at
+              an NGO–SOS Village.
+            </li>
+
+            <li>
+              Taught math to 20+ underprivileged children across India with
+              Angel Xpress Foundation and joined its digital team, increasing
+              outreach and awareness by <strong>40%</strong> across
+              <strong>150+ hours</strong> of service.
+            </li>
+
+          </ul>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <section id="beyond" class="fade">
+
+    <h2 class="section-title">
+      Beyond the Code
+    </h2>
+
+    <p class="intro">
+      Outside of data and software, I spend my time in front of the camera and on the pitch.
+    </p>
+
+    <div class="beyond-grid">
+
+      <article class="beyond-card wide" data-mark="STAGE">
+        <div class="beyond-kicker">On camera</div>
+        <h3 class="beyond-title">Modelling &amp; Acting</h3>
+
+        <div class="acting-layout">
+          <div>
+            <p class="beyond-copy">
+              I've been acting and modelling for more than 11 years, with over 50 shoots. I've worked on short films, ads and
+              photoshoots for brands like Maaza, Acer and ZILO, including an Acer ad alongside
+              Sunil Chhetri.
+            </p>
+
+            <div class="award">
+              <div>
+                <strong>State recognition award</strong>
+                <span>For my acting performance</span>
+              </div>
+            </div>
+
+            <figure class="feature-photo">
+              <img src="assets/beyond/maaza.jpg" alt="Maaza festive print ad" loading="lazy">
+              <figcaption><strong>Maaza</strong>Photoshoot for the festive print campaign</figcaption>
+            </figure>
+          </div>
+
+          <div class="clip-grid">
+            <a class="clip" href="https://youtu.be/rWREqVAYgXg" target="_blank" rel="noopener">
+              <div class="clip-thumb"><img src="assets/beyond/yt-rWREqVAYgXg.jpg" alt="Acer Festive Dhamaka ad" loading="lazy"></div>
+              <div class="clip-meta"><strong>Acer India</strong>Festive Dhamaka ad with Sunil Chhetri</div>
+            </a>
+            <a class="clip" href="https://www.instagram.com/reels/DcLaCIgNi8L/" target="_blank" rel="noopener">
+              <div class="clip-thumb"><img src="assets/beyond/zilo-reel.jpg" alt="ZILO reel" loading="lazy"></div>
+              <div class="clip-meta"><strong>ZILO</strong>Shoot for an Instagram reel</div>
+            </a>
+            <a class="clip" href="https://www.youtube.com/watch?v=-UbLC1kegrA" target="_blank" rel="noopener">
+              <div class="clip-thumb"><img src="assets/beyond/yt-UbLC1kegrA.jpg" alt="TempleWise" loading="lazy"></div>
+              <div class="clip-meta"><strong>TempleWise</strong>With Mr. Murugan</div>
+            </a>
+            <a class="clip" href="https://www.youtube.com/watch?v=5gwtdD1kEq0" target="_blank" rel="noopener">
+              <div class="clip-thumb"><img src="assets/beyond/yt-5gwtdD1kEq0.jpg" alt="The Cross Connection short film" loading="lazy"></div>
+              <div class="clip-meta"><strong>The Cross Connection</strong>Short film, My Rode Reel 2017</div>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="beyond-card wide" data-mark="PITCH">
+        <div class="beyond-kicker">On the pitch</div>
+        <h3 class="beyond-title">Football</h3>
+        <p class="beyond-copy">
+          I've played football for more than 11 years, for my school teams and at club level
+          with BBFS (Bhaichung Bhutia Football Schools).
+        </p>
+
+        <div class="stat-strip">
+          <div><strong>11+</strong><span>Years playing</span></div>
+          <div><strong>BBFS</strong><span>Club</span></div>
+          <div><strong>Best Player</strong><span>Of the tournament</span></div>
+        </div>
+
+        <ul class="beyond-list">
+          <li><span>Best Player of the Tournament, with my team finishing runners-up</span><span class="beyond-year">BBFS</span></li>
+          <li><span>Winners in multiple school team soccer competitions</span><span class="beyond-year">School</span></li>
+          <li><span>Runners-up in multiple school team soccer competitions</span><span class="beyond-year">School</span></li>
+        </ul>
+
+        <div class="pitch-photos">
+          <figure class="feature-photo">
+            <img src="assets/beyond/football-1.jpg" alt="Arnav on the pitch in the BGSNPS number 6 jersey" loading="lazy" style="aspect-ratio: 3 / 4;">
+          </figure>
+          <figure class="feature-photo">
+            <img src="assets/beyond/football-2.jpg" alt="BGSNPS football team with medals and a trophy at Carpe Diem" loading="lazy" style="aspect-ratio: 1600 / 903;">
+          </figure>
+        </div>
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <section id="contact" class="fade">
+
+    <h2 class="section-title">
+      Contact
+    </h2>
+
+    <div class="contact">
+
+      <p class="contact-copy">
+        Interested in data science, software, or AI, especially where they meet
+        markets and real-world systems? I'd be glad to connect about
+        internships, projects, or research.
+      </p>
+
+      <div class="contact-links">
+
+        <a href="mailto:somani5@illinois.edu">
+          somani5@illinois.edu
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/arnav-somani-aa0660321/"
+          target="_blank"
+          rel="noopener"
+        >
+          LinkedIn
+        </a>
+
+        <a href="https://github.com/somani0503" target="_blank" rel="noopener">
+          GitHub
+        </a>
+
+        <a href="tel:+12176931138">
+          (217) 693-1138
+        </a>
+
+        <span>
+          Urbana-Champaign, IL
+        </span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer class="site">
+
+  <span>
+    © <span id="year">2026</span> Arnav Somani
+  </span>
+
+  <span class="footer-tag">
+    Data · Software · AI <b>· Illinois</b>
+  </span>
+
+</footer>
+
+
+<a href="#top" class="back-top" id="backTop" aria-label="Back to top">
+  ↑
+</a>
+
+
+<script>
+
+
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  menuToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', open);
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+
+  const revealObserver = new IntersectionObserver(
+    (items) => {
+      items.forEach(item => {
+        if (item.isIntersecting) {
+          item.target.classList.add('visible');
+          revealObserver.unobserve(item.target);
+        }
+      });
+    },
+    { threshold: 0.08 }
+  );
+
+  document
+    .querySelectorAll('.fade, .entry')
+    .forEach(el => revealObserver.observe(el));
+
+
+  const timelines = [...document.querySelectorAll('.timeline')].map(el => ({
+    el,
+    progress: el.querySelector('.timeline-progress'),
+    entries: [...el.querySelectorAll('.entry')]
+  }));
+
+  function updateTimelines() {
+    const viewportCenter = window.innerHeight * 0.48;
+
+    timelines.forEach(({ el, progress, entries }) => {
+      const rect = el.getBoundingClientRect();
+      const pct = Math.max(0, Math.min(1, (viewportCenter - rect.top) / rect.height));
+
+      if (progress) {
+        progress.style.height = (pct * 100) + '%';
+      }
+
+      entries.forEach(entry => {
+        const r = entry.getBoundingClientRect();
+        entry.classList.toggle(
+          'active',
+          r.top < viewportCenter && r.bottom > viewportCenter - 40
+        );
+      });
+    });
+  }
+
+
+  const navItems = [...navLinks.querySelectorAll('a')];
+  const sections = navItems
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+  function updateNav() {
+    const mark = window.innerHeight * 0.3;
+    let current = null;
+
+    sections.forEach(sec => {
+      if (sec.getBoundingClientRect().top <= mark) {
+        current = sec.id;
+      }
+    });
+
+    // At the very bottom, highlight the last section
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) {
+      current = sections[sections.length - 1].id;
+    }
+
+    navItems.forEach(a => {
+      a.classList.toggle('current', a.getAttribute('href') === '#' + current);
+    });
+  }
+
+
+  const backTop = document.getElementById('backTop');
+
+  function onScroll() {
+    updateTimelines();
+    updateNav();
+    backTop.classList.toggle('show', window.scrollY > 500);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
